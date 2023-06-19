@@ -3,15 +3,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { publicRoutes } from '@/routes';
 import { DefaultLayout } from '@/layouts';
 
+import { OnlyHeader } from '@/layouts';
+import NotFound from './components/common/NotFound';
+
 function App() {
     return (
         <Router>
-            <div className="container mx-auto">
-                <h1 className="text-2xl font-bold">Hello, Tailwind CSS!</h1>
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    Click me
-                </button>
-            </div>
             <div className="App">
                 <Routes>
                     {publicRoutes.map((route, index) => {
@@ -36,6 +33,14 @@ function App() {
                             />
                         );
                     })}
+                    <Route
+                        path="*"
+                        element={
+                            <OnlyHeader>
+                                <NotFound />
+                            </OnlyHeader>
+                        }
+                    />
                 </Routes>
             </div>
         </Router>
